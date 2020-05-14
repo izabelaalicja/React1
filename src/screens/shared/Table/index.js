@@ -3,10 +3,14 @@ import PropTypes from "prop-types";
 import TableHeader from "../TableHeader";
 import TableRow from "../TableRow";
 
-export default function Table({ users, setSelectedUser, selectedUser }) {
+export default function Table({ users, setSelectedUser, selectedUser, deleteSelectedUser,
+  sortTable, order, columnsNames }) {
   return (
     <table>
-      <TableHeader columnsNames={["id user", "first name", "last name"]} />
+      <TableHeader columnsNames={Object.values(columnsNames)}
+        order={order}
+        sortTable={sortTable}
+      />
       <tbody>
         {users.map((u) => (
           <TableRow
@@ -14,6 +18,7 @@ export default function Table({ users, setSelectedUser, selectedUser }) {
             user={u}
             selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}
+            deleteSelectedUser={deleteSelectedUser}
           />
         ))}
       </tbody>

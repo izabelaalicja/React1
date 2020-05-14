@@ -1,11 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function TableHeader({ columnsNames }) {
+function TableHeader({ columnsNames, sortTable, order }) {
   return (
     <thead>
       <tr>
         {columnsNames.map((c) => (
-          <th key={c}>{c}</th>
+          <th key={c} onClick={() => (
+            sortTable(c, order)
+          )}>{c}</th>
         ))}
       </tr>
     </thead>
@@ -13,3 +16,7 @@ function TableHeader({ columnsNames }) {
 }
 
 export default TableHeader;
+
+TableHeader.propTypes = {
+  columnsNames: PropTypes.arrayOf(PropTypes.string).isRequired
+};
